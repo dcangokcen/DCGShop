@@ -3,10 +3,12 @@ using DCGShop.Order.Application.Features.CQRS.Handlers.OrderDetailHandlers;
 using DCGShop.Order.Application.Features.CQRS.Queries.OrderDetailQueries;
 using DCGShop.Order.Application.Interfaces;
 using DCGShop.Order.Application.Services;
+using DCGShop.Order.Persistence.Context;
 using DCGShop.Order.Persistence.Repostories;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddDbContext<OrderContext>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddApplicationService(builder.Configuration);
 

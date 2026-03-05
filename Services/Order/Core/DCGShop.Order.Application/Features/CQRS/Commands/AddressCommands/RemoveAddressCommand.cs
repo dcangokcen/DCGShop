@@ -10,9 +10,9 @@ namespace DCGShop.Order.Application.Features.CQRS.Commands.AddressCommands
 	{
 		public int Id { get; set; }
 
-		public RemoveAddressCommand(int ıd)
+		public RemoveAddressCommand(int id)
 		{
-			Id = ıd;
+			Id = id;
 		}
 	}
 }
