@@ -33,7 +33,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IdentityServer", "IdentityS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DCGShop.IdentityServer", "IdentityServer\DCGShop.IdentityServer\DCGShop.IdentityServer.csproj", "{626FAC91-D261-57CB-49FB-A83F4EE11973}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Requrements", "Requrements", "{759EF7F4-2FA8-46D3-BED0-39FB9EE746DC}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Requirements", "Requirements", "{759EF7F4-2FA8-46D3-BED0-39FB9EE746DC}"
 	ProjectSection(SolutionItems) = preProject
 		PortNumbers.txt = PortNumbers.txt
 	EndProjectSection
@@ -49,6 +49,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DCGShop.Cargo.Dto.Layer", "Services\Cargo\DCGShop.Cargo.Dto.Layer\DCGShop.Cargo.Dto.Layer.csproj", "{F5A4BC6C-5DA6-46B5-A8FA-AC8DF5D0E6DE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DCGShop.Cargo.WebApi", "Services\Cargo\DCGShop.Cargo.WebApi\DCGShop.Cargo.WebApi.csproj", "{B10E6169-8A67-421E-BF44-BAFA2336AD2D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Basket", "Basket", "{0CAC1365-5AFD-49CD-816E-BDF942BA5FA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DCGShop.Basket", "Services\Basket\DCGShop.Basket\DCGShop.Basket.csproj", "{167F7FC4-E984-45A1-9BF7-47E2B19C9A2E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontends", "Frontends", "{D504852E-5821-46F2-B00F-5A53377C4593}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DCGShop.WebUI", "Frontends\DCGShop.WebUI\DCGShop.WebUI.csproj", "{F05AE9F7-2C80-49E3-8A69-971F1C1BEB36}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -104,6 +112,14 @@ Global
 		{B10E6169-8A67-421E-BF44-BAFA2336AD2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B10E6169-8A67-421E-BF44-BAFA2336AD2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B10E6169-8A67-421E-BF44-BAFA2336AD2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{167F7FC4-E984-45A1-9BF7-47E2B19C9A2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{167F7FC4-E984-45A1-9BF7-47E2B19C9A2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{167F7FC4-E984-45A1-9BF7-47E2B19C9A2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{167F7FC4-E984-45A1-9BF7-47E2B19C9A2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F05AE9F7-2C80-49E3-8A69-971F1C1BEB36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F05AE9F7-2C80-49E3-8A69-971F1C1BEB36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F05AE9F7-2C80-49E3-8A69-971F1C1BEB36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F05AE9F7-2C80-49E3-8A69-971F1C1BEB36}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -128,6 +144,9 @@ Global
 		{AA8DCB1F-3F08-480D-A007-995F39D50865} = {D566945A-6344-4357-BF39-AFD6BF8BB994}
 		{F5A4BC6C-5DA6-46B5-A8FA-AC8DF5D0E6DE} = {D566945A-6344-4357-BF39-AFD6BF8BB994}
 		{B10E6169-8A67-421E-BF44-BAFA2336AD2D} = {D566945A-6344-4357-BF39-AFD6BF8BB994}
+		{0CAC1365-5AFD-49CD-816E-BDF942BA5FA4} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{167F7FC4-E984-45A1-9BF7-47E2B19C9A2E} = {0CAC1365-5AFD-49CD-816E-BDF942BA5FA4}
+		{F05AE9F7-2C80-49E3-8A69-971F1C1BEB36} = {D504852E-5821-46F2-B00F-5A53377C4593}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A400E508-622B-42D6-94F7-9A590BF6BB0C}

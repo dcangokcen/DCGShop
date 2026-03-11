@@ -17,6 +17,7 @@ namespace DCGShop.IdentityServer
 			new ApiResource("ResourceDiscount"){Scopes = {"DiscountFullPermission"}},
 			new ApiResource("ResourceOrder"){Scopes = {"OrderFullPermission"}},
 			new ApiResource("ResourceCargo"){Scopes = {"CargoFullPermission"}},
+			new ApiResource("ResourceBasket"){Scopes = {"BasketFullPermission"}},
 			new ApiResource(IdentityServerConstants.LocalApi.ScopeName)
 		};
 
@@ -34,6 +35,7 @@ namespace DCGShop.IdentityServer
 			new ApiScope("DiscountFullPermission","Full authority for discount operations"),
 			new ApiScope("OrderFullPermission","Full authority for order operations"),
 			new ApiScope("CargoFullPermission","Full authority for cargo operations"),
+			new ApiScope("BasketFullPermission","Full authority for basket operations"),
 			new ApiScope(IdentityServerConstants.LocalApi.ScopeName)
 		};
 
@@ -54,11 +56,11 @@ namespace DCGShop.IdentityServer
 				ClientId = "DCGShopAdminId",
 				ClientName = "DCG Shop Admin User",
 				ClientSecrets = {new Secret("dcgshopsecret".Sha256()) },
-				AllowedGrantTypes = GrantTypes.ClientCredentials,
-				AllowedScopes = { "CatalogReadPermission", "CatalogReadPermission", "DiscountFullPermission", "OrderFullPermission", "CargoFullPermission",
+				AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
+				AllowedScopes = { "CatalogReadPermission", "CatalogReadPermission", "DiscountFullPermission", "OrderFullPermission", "CargoFullPermission","BasketFullPermission",
 				IdentityServerConstants.LocalApi.ScopeName,
 				IdentityServerConstants.StandardScopes.Email,
-				IdentityServerConstants.StandardScopes.OpenId, 
+				IdentityServerConstants.StandardScopes.OpenId,
 				IdentityServerConstants.StandardScopes.Profile
 				},
 				AccessTokenLifetime = 600
@@ -69,7 +71,7 @@ namespace DCGShop.IdentityServer
 				ClientId = "DCGShopManagerId",
 				ClientName = "DCG Shop Manager User",
 				ClientSecrets = {new Secret("dcgshopsecret".Sha256()) },
-				AllowedGrantTypes = GrantTypes.ClientCredentials,
+				AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
 				AllowedScopes = { "CatalogReadPermission", "CatalogFullPermission" }
 			}
 		};
