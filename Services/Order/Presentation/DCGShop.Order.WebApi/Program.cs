@@ -5,8 +5,15 @@ using DCGShop.Order.Application.Interfaces;
 using DCGShop.Order.Application.Services;
 using DCGShop.Order.Persistence.Context;
 using DCGShop.Order.Persistence.Repostories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
+{
+	opt.Authority = builder.Configuration["IdentityServerURL"];
+	opt.Audience = "ResourceOrder";
+	opt.RequireHttpsMetadata = false;
+});
 
 builder.Services.AddDbContext<OrderContext>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
@@ -42,6 +49,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

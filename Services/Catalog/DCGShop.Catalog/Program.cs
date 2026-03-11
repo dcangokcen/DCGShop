@@ -3,11 +3,19 @@ using DCGShop.Catalog.Services.ProductDetailServices;
 using DCGShop.Catalog.Services.ProductImageServices;
 using DCGShop.Catalog.Services.ProductServices;
 using DCGShop.Catalog.Settings;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver.Core.Operations;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
+{
+    opt.Authority = builder.Configuration["IdentityServerURL"];
+    opt.Audience = "ResourceCatalog";
+    opt.RequireHttpsMetadata = false;
+});
 
 // Add services to the container.
 builder.Services.AddScoped<ICategoryService, CategoryService>();
@@ -39,7 +47,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

@@ -1,10 +1,12 @@
 ﻿using DCGShop.Discount.Dtos;
 using DCGShop.Discount.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DCGShop.Discount.Controllers
 {
+	[Authorize]
 	[Route("api/[controller]")]
 	[ApiController]
 	public class DiscountsController : ControllerBase
