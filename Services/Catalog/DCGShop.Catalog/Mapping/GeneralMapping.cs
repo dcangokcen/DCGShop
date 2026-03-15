@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DCGShop.Catalog.Dtos.CategoryDtos;
+using DCGShop.Catalog.Dtos.FeatureSliderDtos;
 using DCGShop.Catalog.Dtos.ProductDetailDtos;
 using DCGShop.Catalog.Dtos.ProductDtos;
 using DCGShop.Catalog.Dtos.ProductImageDtos;
@@ -30,6 +31,13 @@ namespace DCGShop.Catalog.Mapping
 			CreateMap<ProductImage, CreateProductImageDto>().ReverseMap();
 			CreateMap<ProductImage, UpdateProductImageDto>().ReverseMap();
 			CreateMap<ProductImage, GetByIdProductImageDto>().ReverseMap();
+
+			CreateMap<FeatureSlider, ResultFeatureSliderDto>().ReverseMap();
+			CreateMap<FeatureSlider, CreateFeatureSliderDto>().ReverseMap();
+			CreateMap<FeatureSlider, UpdateFeatureSliderDto>().ReverseMap();
+			CreateMap<FeatureSlider, GetByIdFeatureSliderDto>().ReverseMap();
+
+			CreateMap<Product,ResultProductsWithCategoryDto>().ReverseMap();
 		}
 	}
 }

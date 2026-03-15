@@ -9,5 +9,6 @@ namespace DCGShop.Catalog.Services.ProductServices
 		Task UpdateProductAsync(UpdateProductDto updateProductDto);
 		Task DeleteProductAsync(string Id);
 		Task<GetByIdProductDto> GetByIdProductAsync(string Id);
+		Task<List<ResultProductsWithCategoryDto>> GetProductsWithCategoryAsync();
 	}
 }
