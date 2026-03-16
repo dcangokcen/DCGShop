@@ -1,8 +1,10 @@
 using DCGShop.Catalog.Services.CategoryServices;
+using DCGShop.Catalog.Services.FeatureService;
 using DCGShop.Catalog.Services.FeatureSliderServices;
 using DCGShop.Catalog.Services.ProductDetailServices;
 using DCGShop.Catalog.Services.ProductImageServices;
 using DCGShop.Catalog.Services.ProductServices;
+using DCGShop.Catalog.Services.SpecialOfferServices;
 using DCGShop.Catalog.Settings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
@@ -24,6 +26,8 @@ builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IProductDetailService, ProductDetailService>();
 builder.Services.AddScoped<IProductImageService, ProductImageService>();
 builder.Services.AddScoped<IFeatureSliderService, FeatureSliderService>();
+builder.Services.AddScoped<ISpecialOfferService, SpecialOfferService>();
+builder.Services.AddScoped<IFeatureService, FeatureService>();
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 

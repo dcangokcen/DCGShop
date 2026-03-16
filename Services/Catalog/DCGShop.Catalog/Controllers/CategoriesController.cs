@@ -45,7 +45,7 @@ namespace DCGShop.Catalog.Controllers
 		public async Task<IActionResult> UpdateCategory(UpdateCategoryDto updateCategoryDto)
 		{
 			await _categoryService.UpdateCategoryAsync(updateCategoryDto);
-			return Ok("Kategıori başarıyla güncellendi.");
+			return Ok("Kategori başarıyla güncellendi.");
 		}
 	}
 }
