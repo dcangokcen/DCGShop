@@ -1,6 +1,9 @@
+using DCGShop.Catalog.Services.AboutServices;
+using DCGShop.Catalog.Services.BrandServices;
 using DCGShop.Catalog.Services.CategoryServices;
 using DCGShop.Catalog.Services.FeatureService;
 using DCGShop.Catalog.Services.FeatureSliderServices;
+using DCGShop.Catalog.Services.OfferDiscountServices;
 using DCGShop.Catalog.Services.ProductDetailServices;
 using DCGShop.Catalog.Services.ProductImageServices;
 using DCGShop.Catalog.Services.ProductServices;
@@ -28,6 +31,9 @@ builder.Services.AddScoped<IProductImageService, ProductImageService>();
 builder.Services.AddScoped<IFeatureSliderService, FeatureSliderService>();
 builder.Services.AddScoped<ISpecialOfferService, SpecialOfferService>();
 builder.Services.AddScoped<IFeatureService, FeatureService>();
+builder.Services.AddScoped<IOfferDiscountService, OfferDiscountService>();
+builder.Services.AddScoped<IBrandService, BrandService>();
+builder.Services.AddScoped<IAboutService, AboutService>();
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 

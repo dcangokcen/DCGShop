@@ -7,7 +7,8 @@ namespace DCGShop.Catalog.Services.ProductImageServices
 		Task<List<ResultProductImageDto>> GetAllProductImageAsync();
 		Task CreateProductImageAsync(CreateProductImageDto createProductImageDto);
 		Task UpdateProductImageAsync(UpdateProductImageDto updateProductImageDto);
-		Task DeleteProductImageAsync(string Id);
-		Task<GetByIdProductImageDto> GetByIdProductImageAsync(string Id);
+		Task DeleteProductImageAsync(string id);
+		Task<GetByIdProductImageDto> GetByIdProductImageAsync(string id);
+		Task<GetByIdProductImageDto> GetByProductIdProductImageAsync(string id);
 	}
 }

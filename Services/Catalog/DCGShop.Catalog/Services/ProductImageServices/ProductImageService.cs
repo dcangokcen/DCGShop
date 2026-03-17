@@ -23,9 +23,9 @@ namespace DCGShop.Catalog.Services.ProductImageServices
 			await _productImageCollection.InsertOneAsync(values);
 		}
 
-		public async Task DeleteProductImageAsync(string Id)
+		public async Task DeleteProductImageAsync(string id)
 		{
-			await _productImageCollection.DeleteOneAsync(x => x.ProductImageId == Id);
+			await _productImageCollection.DeleteOneAsync(x => x.ProductImageId == id);
 		}
 
 		public async Task<List<ResultProductImageDto>> GetAllProductImageAsync()
@@ -34,9 +34,15 @@ namespace DCGShop.Catalog.Services.ProductImageServices
 			return _mapper.Map<List<ResultProductImageDto>>(values);
 		}
 
-		public async Task<GetByIdProductImageDto> GetByIdProductImageAsync(string Id)
+		public async Task<GetByIdProductImageDto> GetByIdProductImageAsync(string id)
 		{
-			var values = await _productImageCollection.Find(x => x.ProductImageId == Id).FirstOrDefaultAsync();
+			var values = await _productImageCollection.Find(x => x.ProductImageId == id).FirstOrDefaultAsync();
+			return _mapper.Map<GetByIdProductImageDto>(values);
+		}
+
+		public async Task<GetByIdProductImageDto> GetByProductIdProductImageAsync(string id)
+		{
+			var values = await _productImageCollection.Find(x => x.ProductId == id).FirstOrDefaultAsync();
 			return _mapper.Map<GetByIdProductImageDto>(values);
 		}
 
