@@ -2,6 +2,7 @@
 using DCGShop.Catalog.Dtos.AboutDtos;
 using DCGShop.Catalog.Dtos.BrandDtos;
 using DCGShop.Catalog.Dtos.CategoryDtos;
+using DCGShop.Catalog.Dtos.ContactDtos;
 using DCGShop.Catalog.Dtos.FeatureDtos;
 using DCGShop.Catalog.Dtos.FeatureSliderDtos;
 using DCGShop.Catalog.Dtos.OfferDiscountDtos;
@@ -66,6 +67,11 @@ namespace DCGShop.Catalog.Mapping
 			CreateMap<About, CreateAboutDto>().ReverseMap();
 			CreateMap<About, UpdateAboutDto>().ReverseMap();
 			CreateMap<About, GetByIdAboutDto>().ReverseMap();
+
+			CreateMap<Contact, ResultContactDto>().ReverseMap();
+			CreateMap<Contact, CreateContactDto>().ReverseMap();
+			CreateMap<Contact, UpdateContactDto>().ReverseMap();
+			CreateMap<Contact, GetByIdContactDto>().ReverseMap();
 
 			CreateMap<Product,ResultProductsWithCategoryDto>().ReverseMap();
 		}

@@ -40,6 +40,12 @@ namespace DCGShop.Catalog.Services.ProductDetailServices
 			return _mapper.Map<GetByIdProductDetailDto>(values);
 		}
 
+		public async Task<GetByIdProductDetailDto> GetByProductIdProductDetailAsync(string Id)
+		{
+			var values = await _productDetailCollection.Find(x => x.ProductId == Id).FirstOrDefaultAsync();
+			return _mapper.Map<GetByIdProductDetailDto>(values);
+		}
+
 		public async Task UpdateProductDetailAsync(UpdateProductDetailDto updateProductDetailDto)
 		{
 			var values = _mapper.Map<ProductDetail>(updateProductDetailDto);
