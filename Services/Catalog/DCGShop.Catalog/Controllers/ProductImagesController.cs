@@ -1,10 +1,12 @@
 ﻿using DCGShop.Catalog.Dtos.ProductImageDtos;
 using DCGShop.Catalog.Services.ProductImageServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DCGShop.Catalog.Controllers
 {
+	[Authorize]
 	[Route("api/[controller]")]
 	[ApiController]
 	public class ProductImagesController : ControllerBase

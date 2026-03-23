@@ -48,7 +48,7 @@ namespace DCGShop.IdentityServer
 				ClientName = "DCG Shop Visitor User",
 				ClientSecrets = {new Secret("dcgshopsecret".Sha256()) },
 				AllowedGrantTypes = GrantTypes.ClientCredentials,
-				AllowedScopes = { "DiscountFullPermission" }
+				AllowedScopes = { "DiscountFullPermission", "CatalogReadPermission", "CatalogFullPermission" }
 			},
 			//Admin
 			new Client
@@ -72,7 +72,7 @@ namespace DCGShop.IdentityServer
 				ClientName = "DCG Shop Manager User",
 				ClientSecrets = {new Secret("dcgshopsecret".Sha256()) },
 				AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
-				AllowedScopes = { "CatalogReadPermission", "CatalogFullPermission" }
+				AllowedScopes = { "CatalogReadPermission", "CatalogFullPermission", "BasketFullPermission" }
 			}
 		};
 	}
