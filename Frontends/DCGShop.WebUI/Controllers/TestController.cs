@@ -4,18 +4,18 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Net.Http.Headers;
 
-namespace DCGShop.WebUI.ViewComponents.UILayoutViewComponents
+namespace DCGShop.WebUI.Controllers
 {
-	public class _NavbaurUILayoutComponentPartial : ViewComponent
+	public class TestController : Controller
 	{
 		private readonly IHttpClientFactory _httpClientFactory;
 
-		public _NavbaurUILayoutComponentPartial(IHttpClientFactory httpClientFactory)
+		public TestController(IHttpClientFactory httpClientFactory)
 		{
 			_httpClientFactory = httpClientFactory;
 		}
 
-		public async Task<IViewComponentResult> InvokeAsync()
+		public async Task<IActionResult> Index()
 		{
 			string token = "";
 			using (var httpClient = new HttpClient())
@@ -56,6 +56,11 @@ namespace DCGShop.WebUI.ViewComponents.UILayoutViewComponents
 				var values = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(jsonData);
 				return View(values);
 			}
+			return View();
+		}
+
+		public IActionResult Deneme()
+		{
 			return View();
 		}
 	}

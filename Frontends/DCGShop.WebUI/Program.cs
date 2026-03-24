@@ -1,4 +1,8 @@
 using DCGShop.WebUI.Services;
+using DCGShop.WebUI.Services.Concrete;
+using DCGShop.WebUI.Services.Interfaces;
+using DCGShop.WebUI.Settings;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,12 +19,25 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddCo
 	opt.Cookie.Name = "DCGShopJwtCookie";
 });
 
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).
+	AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, opt =>
+{
+	opt.LoginPath = "/Login/Index";
+	opt.ExpireTimeSpan = TimeSpan.FromDays(5);
+	opt.Cookie.Name = "DCGShopCookie";
+	opt.SlidingExpiration = true;	
+});
+
+
 builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddScoped<ILoginService, LoginService>();
+builder.Services.AddHttpClient<IIdentityService, IdentityService>();
 
 builder.Services.AddHttpClient();
 builder.Services.AddControllersWithViews();
+
+builder.Services.Configure<ClientSettings>(builder.Configuration.GetSection("ClientSettings"));
 
 var app = builder.Build();
 
