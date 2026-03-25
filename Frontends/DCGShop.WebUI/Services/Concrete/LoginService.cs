@@ -1,6 +1,7 @@
-﻿using System.Security.Claims;
+﻿using DCGShop.WebUI.Services.Interfaces;
+using System.Security.Claims;
 
-namespace DCGShop.WebUI.Services
+namespace DCGShop.WebUI.Services.Concrete
 {
 	public class LoginService : ILoginService
 	{

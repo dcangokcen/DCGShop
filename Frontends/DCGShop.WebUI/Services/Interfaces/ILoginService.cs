@@ -1,4 +1,4 @@
-﻿namespace DCGShop.WebUI.Services
+﻿namespace DCGShop.WebUI.Services.Interfaces
 {
 	public interface ILoginService
 	{

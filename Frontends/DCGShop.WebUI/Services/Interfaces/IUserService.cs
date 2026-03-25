@@ -1,0 +1,9 @@
+﻿using DCGShop.WebUI.Models;
+
+namespace DCGShop.WebUI.Services.Interfaces
+{
+	public interface IUserService
+	{
+		Task<UserDetailViewModel> GetUserInfo();
+	}
+}
