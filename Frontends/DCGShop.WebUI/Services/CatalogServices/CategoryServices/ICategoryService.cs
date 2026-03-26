@@ -1,6 +1,6 @@
-﻿using DCGShop.Catalog.Dtos.CategoryDtos;
+﻿using DCGShop.DtoLayer.CatalogDtos.CategoryDtos;
 
-namespace DCGShop.Catalog.Services.CategoryServices
+namespace DCGShop.WebUI.Services.CatalogServices.CategoryServices
 {
 	public interface ICategoryService
 	{
