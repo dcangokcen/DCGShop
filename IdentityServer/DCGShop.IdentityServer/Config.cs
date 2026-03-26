@@ -56,7 +56,8 @@ namespace DCGShop.IdentityServer
 				ClientName = "DCG Shop Visitor User",
 				ClientSecrets = {new Secret("dcgshopsecret".Sha256()) },
 				AllowedGrantTypes = GrantTypes.ClientCredentials,
-				AllowedScopes = { "CatalogReadPermission", "CatalogFullPermission", "OcelotFullPermission", "CommentFullPermission", "ImagesFullPermission" }
+				AllowedScopes = { "CatalogReadPermission", "CatalogFullPermission", "OcelotFullPermission", "CommentFullPermission", "ImagesFullPermission", IdentityServerConstants.LocalApi.ScopeName },
+				AllowAccessTokensViaBrowser = true
 			},
 			//Admin
 			new Client
