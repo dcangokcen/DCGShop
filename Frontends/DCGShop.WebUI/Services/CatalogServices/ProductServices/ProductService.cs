@@ -39,15 +39,18 @@ namespace DCGShop.WebUI.Services.CatalogServices.ProductServices
 
 		public async Task<List<ResultProductWithCategoryDto>> GetProductsWithCategoryAsync()
 		{
-			var responseMessage = await _httpClient.GetAsync("products");
+			var responseMessage = await _httpClient.GetAsync("products/productlistwithcategory");
 			var jsonData = await responseMessage.Content.ReadAsStringAsync();
 			var values = JsonConvert.DeserializeObject<List<ResultProductWithCategoryDto>>(jsonData);
 			return values;
 		}
 
-		public Task<List<ResultProductWithCategoryDto>> GetProductsWithCategoryByCategoryIdAsync(string categoryId)
+		public async Task<List<ResultProductWithCategoryDto>> GetProductsWithCategoryByCategoryIdAsync(string categoryId)
 		{
-			throw new NotImplementedException();
+			var responseMessage = await _httpClient.GetAsync("products/productlistwithcategorybycategoryid/" + categoryId);
+			var jsonData = await responseMessage.Content.ReadAsStringAsync();
+			var values = JsonConvert.DeserializeObject<List<ResultProductWithCategoryDto>>(jsonData);
+			return values;
 		}
 
 		public async Task UpdateProductAsync(UpdateProductDto updateProductDto)

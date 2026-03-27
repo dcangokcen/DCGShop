@@ -35,7 +35,7 @@ namespace DCGShop.WebUI.Areas.Admin.Controllers
 		public async Task<IActionResult> ProductListWithCategory()
 		{
 			ProductViewBagList();
-
+			var values = await _productService.GetProductsWithCategoryAsync();
 			//var client = _httpClientFactory.CreateClient();
 			//var responseMessage = await client.GetAsync("https://localhost:7070/api/Products/ProductListWithCategory");
 			//if (responseMessage.IsSuccessStatusCode)
@@ -44,7 +44,7 @@ namespace DCGShop.WebUI.Areas.Admin.Controllers
 			//	var values = JsonConvert.DeserializeObject<List<ResultProductWithCategoryDto>>(jsonData);
 			//	return View(values);
 			//}
-			return View();
+			return View(values);
 		}
 
 		[HttpGet]
