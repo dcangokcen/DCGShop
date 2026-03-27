@@ -2,6 +2,7 @@ using DCGShop.WebUI.Handlers;
 using DCGShop.WebUI.Services.CatalogServices.AboutServices;
 using DCGShop.WebUI.Services.CatalogServices.BrandServices;
 using DCGShop.WebUI.Services.CatalogServices.CategoryServices;
+using DCGShop.WebUI.Services.CatalogServices.ContactServices;
 using DCGShop.WebUI.Services.CatalogServices.FeatureServices;
 using DCGShop.WebUI.Services.CatalogServices.OfferDiscountServices;
 using DCGShop.WebUI.Services.CatalogServices.ProductDetailServices;
@@ -9,6 +10,7 @@ using DCGShop.WebUI.Services.CatalogServices.ProductImageServices;
 using DCGShop.WebUI.Services.CatalogServices.ProductServices;
 using DCGShop.WebUI.Services.CatalogServices.SliderServices;
 using DCGShop.WebUI.Services.CatalogServices.SpecialOfferServices;
+using DCGShop.WebUI.Services.CommentServices;
 using DCGShop.WebUI.Services.Concrete;
 using DCGShop.WebUI.Services.Interfaces;
 using DCGShop.WebUI.Settings;
@@ -110,6 +112,16 @@ builder.Services.AddHttpClient<IProductImageService, ProductImageService>(opt =>
 }).AddHttpMessageHandler<ClientCredentialTokenHandler>();
 
 builder.Services.AddHttpClient<IProductDetailService, ProductDetailService>(opt =>
+{
+	opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Catalog.Path}");
+}).AddHttpMessageHandler<ClientCredentialTokenHandler>();
+
+builder.Services.AddHttpClient<ICommentService, CommentService>(opt =>
+{
+	opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Comment.Path}");
+}).AddHttpMessageHandler<ClientCredentialTokenHandler>();
+
+builder.Services.AddHttpClient<IContactService, ContactService>(opt =>
 {
 	opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Catalog.Path}");
 }).AddHttpMessageHandler<ClientCredentialTokenHandler>();
