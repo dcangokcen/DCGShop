@@ -1,4 +1,5 @@
 ﻿using DCGShop.DtoLayer.CatalogDtos.CategoryDtos;
+using DCGShop.WebUI.Services.CatalogServices.CategoryServices;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -8,55 +9,17 @@ namespace DCGShop.WebUI.ViewComponents.UILayoutViewComponents
 {
 	public class _NavbaurUILayoutComponentPartial : ViewComponent
 	{
-		private readonly IHttpClientFactory _httpClientFactory;
+		private readonly ICategoryService _categoryService;
 
-		public _NavbaurUILayoutComponentPartial(IHttpClientFactory httpClientFactory)
+		public _NavbaurUILayoutComponentPartial(ICategoryService categoryService)
 		{
-			_httpClientFactory = httpClientFactory;
+			_categoryService = categoryService;
 		}
 
 		public async Task<IViewComponentResult> InvokeAsync()
 		{
-			string token = "";
-			using (var httpClient = new HttpClient())
-			{
-				var request = new HttpRequestMessage
-				{
-					RequestUri = new Uri("http://localhost:5001/connect/token"),
-					Method = HttpMethod.Post,
-					Content = new FormUrlEncodedContent(new Dictionary<string, string>
-					{
-						{"client_id", "DCGShopVisitorId"},
-						{"client_secret", "dcgshopsecret"},
-						{"grant_type", "client_credentials"}
-					})
-				};
-
-				using (var response = await httpClient.SendAsync(request))
-				{
-					if (response.IsSuccessStatusCode)
-					{
-						var jsonData = await response.Content.ReadAsStringAsync();
-						var tokenResponse = JObject.Parse(jsonData);
-						token = tokenResponse["access_token"].ToString();
-					}
-					else
-					{
-						return View("Error");
-					}
-				}
-			}
-
-			var client = _httpClientFactory.CreateClient();
-			client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-			var responseMessage = await client.GetAsync("https://localhost:7070/api/Categories");
-			if (responseMessage.IsSuccessStatusCode)
-			{
-				var jsonData = await responseMessage.Content.ReadAsStringAsync();
-				var values = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(jsonData);
-				return View(values);
-			}
-			return View();
+			var values = await _categoryService.GetAllCategoryAsync();
+			return View(values);
 		}
 	}
 }
