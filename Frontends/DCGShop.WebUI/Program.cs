@@ -1,4 +1,5 @@
 using DCGShop.WebUI.Handlers;
+using DCGShop.WebUI.Services.BasketServices;
 using DCGShop.WebUI.Services.CatalogServices.AboutServices;
 using DCGShop.WebUI.Services.CatalogServices.BrandServices;
 using DCGShop.WebUI.Services.CatalogServices.CategoryServices;
@@ -12,6 +13,7 @@ using DCGShop.WebUI.Services.CatalogServices.SliderServices;
 using DCGShop.WebUI.Services.CatalogServices.SpecialOfferServices;
 using DCGShop.WebUI.Services.CommentServices;
 using DCGShop.WebUI.Services.Concrete;
+using DCGShop.WebUI.Services.DiscountServices;
 using DCGShop.WebUI.Services.Interfaces;
 using DCGShop.WebUI.Settings;
 using IdentityModel.AspNetCore.AccessTokenManagement;
@@ -64,6 +66,16 @@ var values = builder.Configuration.GetSection("ServiceApiSettings").Get<ServiceA
 builder.Services.AddHttpClient<IUserService, UserService>(opt =>
 {
 	opt.BaseAddress = new Uri(values.IdentityServerUrl);
+}).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
+
+builder.Services.AddHttpClient<IBasketService, BasketService>(opt =>
+{
+	opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Basket.Path}");
+}).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
+
+builder.Services.AddHttpClient<IDiscountService, DiscountService>(opt =>
+{
+	opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Discount.Path}");
 }).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
 
 builder.Services.AddHttpClient<ICategoryService, CategoryService>(opt =>

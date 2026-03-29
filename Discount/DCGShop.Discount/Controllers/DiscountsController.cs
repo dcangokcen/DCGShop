@@ -29,6 +29,13 @@ namespace DCGShop.Discount.Controllers
 			var values =await _discountService.GetByIdDiscountCouponAsync(id);
 			return Ok(values);
 		}
+
+		[HttpGet("GetCodeDetailByCode")]
+		public async Task<IActionResult> GetCodeDetailByCode(string code)
+		{
+			var values = await _discountService.GetCodeDetailByCodeAsync(code);
+			return Ok(values);
+		}
 		[HttpPost]
 		public async Task<IActionResult> CreateDiscountCoupon(CreateDiscountCouponDto createCouponDto)
 		{
