@@ -25,9 +25,17 @@ namespace DCGShop.Order.Application.Features.CQRS.Handlers.AddressHandlers
 			{
 				AddressId = values.AddressId,
 				City = values.City,
-				Detail = values.Detail,
+				Detail1 = values.Detail1,
 				District = values.District,
-				UserId = values.UserId
+				UserId = values.UserId,
+				Country = values.Country,
+				Description = values.Description,
+				Detail2 = values.Detail2,
+				Email = values.Email,
+				Name = values.Name,
+				Phone = values.Phone,
+				Surname = values.Surname,
+				ZipCode = values.ZipCode
 			};
 		}
 	}
