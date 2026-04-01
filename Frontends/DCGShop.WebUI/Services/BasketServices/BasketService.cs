@@ -57,5 +57,29 @@ namespace DCGShop.WebUI.Services.BasketServices
 			await SaveBasket(values);
 			return result;
 		}
+
+		public async Task UpdateBasketItemQuantity(string productId, int quantity)
+		{
+			var values = await GetBasket();
+
+			if (values == null || values.BasketItems == null)
+				return;
+
+			var updatedItem = values.BasketItems.FirstOrDefault(x => x.ProductId == productId);
+
+			if (updatedItem == null)
+				return;
+
+			if (quantity <= 0)
+			{
+				values.BasketItems.Remove(updatedItem);
+			}
+			else
+			{
+				updatedItem.Quantity = quantity;
+			}
+
+			await SaveBasket(values);
+		}
 	}
 }

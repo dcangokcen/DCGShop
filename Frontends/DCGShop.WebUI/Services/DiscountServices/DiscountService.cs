@@ -1,5 +1,6 @@
 ﻿using DCGShop.DtoLayer.DiscountDtos;
 using IdentityModel.Client;
+using Newtonsoft.Json;
 
 namespace DCGShop.WebUI.Services.DiscountServices
 {
@@ -14,8 +15,9 @@ namespace DCGShop.WebUI.Services.DiscountServices
 
 		public async Task<GetDiscountCodeDetailByCode> GetDiscountCode(string code)
 		{
-			var responseeMessage = await _httpClient.GetAsync($"discounts/GetCodeDetailByCode?code={code}");
-			var values = await responseeMessage.Content.ReadFromJsonAsync<GetDiscountCodeDetailByCode>();
+			var responseMessage = await _httpClient.GetAsync($"discounts/GetCodeDetailByCode?code={code}");
+			var jsonData = await responseMessage.Content.ReadAsStringAsync();
+			var values = JsonConvert.DeserializeObject<GetDiscountCodeDetailByCode>(jsonData);
 			return values;
 		}
 	}

@@ -1,4 +1,5 @@
 ﻿using DCGShop.DtoLayer.BasketDtos;
+using DCGShop.DtoLayer.DiscountDtos;
 using DCGShop.WebUI.Services.BasketServices;
 using DCGShop.WebUI.Services.CatalogServices.ProductServices;
 using DCGShop.WebUI.Services.DiscountServices;
@@ -17,17 +18,25 @@ namespace DCGShop.WebUI.Controllers
 			_basketService = basketService;
 		}
 
-		public async Task<IActionResult> Index()
+		public async Task<IActionResult> Index(string code, int discountRate)
 		{
 			ViewBag.directory1 = "Ana Sayfa";
 			ViewBag.directory2 = "Ürünler";
 			ViewBag.directory3 = "Sepetim";
-			var basketTotal = await _basketService.GetBasket();
-			ViewBag.TotalPrice = basketTotal.TotalPrice;
+			ViewBag.DiscountCode = code;
+			
+			var basketTotal = await _basketService.GetBasket();			
+
 			var taxAmount = basketTotal.TotalPrice * 0.10m;
 			var totalPriceWithTax = basketTotal.TotalPrice + taxAmount;
+			var totalNewPriceWithDiscount = totalPriceWithTax - (totalPriceWithTax * discountRate / 100);
+
+			ViewBag.TotalPrice = basketTotal.TotalPrice;
 			ViewBag.TaxAmount = taxAmount;
 			ViewBag.TotalPriceWithTax = totalPriceWithTax;
+			ViewBag.DiscountAmount = totalPriceWithTax * discountRate / 100;
+			ViewBag.totalNewPriceWithDiscount = totalNewPriceWithDiscount;
+
 			return View();
 		}
 
@@ -51,6 +60,40 @@ namespace DCGShop.WebUI.Controllers
 			await _basketService.RemoveBasketItem(id);
 			return RedirectToAction("Index");
 
+		}
+
+		public async Task<IActionResult> IncreaseBasketItemQuantity(string id, string code, int discountRate = 0)
+		{
+			var basket = await _basketService.GetBasket();
+			var item = basket.BasketItems.FirstOrDefault(x => x.ProductId == id);
+
+			if (item != null)
+			{
+				await _basketService.UpdateBasketItemQuantity(id, item.Quantity + 1);
+			}
+
+			return RedirectToAction("Index", new
+			{
+				code,
+				discountRate
+			});
+		}
+
+		public async Task<IActionResult> DecreaseBasketItemQuantity(string id, string code, int discountRate = 0)
+		{
+			var basket = await _basketService.GetBasket();
+			var item = basket.BasketItems.FirstOrDefault(x => x.ProductId == id);
+
+			if (item != null)
+			{
+				await _basketService.UpdateBasketItemQuantity(id, item.Quantity - 1);
+			}
+
+			return RedirectToAction("Index", new
+			{
+				code,
+				discountRate
+			});
 		}
 	}
 }

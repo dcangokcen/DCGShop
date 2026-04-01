@@ -9,5 +9,6 @@ namespace DCGShop.WebUI.Services.BasketServices
 		Task DeleteBasket(string userId);
 		Task AddBasketItem(BasketItemDto basketItemDto);
 		Task<bool> RemoveBasketItem(string productId);
+		Task UpdateBasketItemQuantity(string productId, int quantity);
 	}
 }

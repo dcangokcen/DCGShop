@@ -26,7 +26,15 @@ namespace DCGShop.WebUI.Controllers
 		public async Task<IActionResult> ConfirmDiscountCoupon(string code)
 		{
 			var values =await _discountService.GetDiscountCode(code);
-			return View(values);
+			if (values == null)
+			{
+				TempData["DiscountError"] = "Geçersiz indirim kodu.";
+				return RedirectToAction("Index", "ShoppingCart");
+			}
+
+			var basketValues = await _basketService.GetBasket();
+
+			return RedirectToAction("Index", "ShoppingCart", new {code = code, discountRate = values.Rate});
 		}
 	}
 }

@@ -11,18 +11,36 @@
     <div class="bg-light p-30 mb-5">
         <div class="border-bottom pb-2">
             <div class="d-flex justify-content-between mb-3">
-                <h6>Toplam Ürün Fiyatı</h6>
-                <h6>@ViewBag.TotalPrice ₺</h6>
+                <h6>Ara Toplam</h6>
+                <h6>@ViewBag.TotalPrice.ToString("N2") ₺</h6>
             </div>
             <div class="d-flex justify-content-between">
                 <h6 class="font-weight-medium">KDV</h6>
-                <h6 class="font-weight-medium">@ViewBag.TaxAmount ₺</h6>
+                <h6 class="font-weight-medium">@ViewBag.TaxAmount.ToString("N2") ₺</h6>
             </div>
+            <div class="d-flex justify-content-between">
+                <h6 class="font-weight-medium">Toplam</h6>
+                <h6 class="font-weight-medium">@ViewBag.TotalPriceWithTax.ToString("N2") ₺</h6>
+            </div>
+            @if (TempData["DiscountError"] != null)
+            {
+                <div class="d-flex justify-content-between mb-3">
+                    <h6 class="font-weight-medium text-danger">@TempData["DiscountError"]</h6>
+                    <h6 class="font-weight-medium text-danger">-</h6>
+                </div>
+            }
+            else if (ViewBag.DiscountCode != null)
+            {
+                <div class="d-flex justify-content-between mb-3">
+                    <h6 class="font-weight-medium text-success">@ViewBag.DiscountCode İndirim Kodu</h6>
+                    <h6 class="font-weight-medium text-success">- @ViewBag.DiscountAmount.ToString("N2") ₺</h6>
+                </div>
+            }
         </div>
         <div class="pt-2">
             <div class="d-flex justify-content-between mt-2">
-                <h5>Toplam</h5>
-                <h5>@ViewBag.TotalPriceWithTax ₺</h5>
+                <h5>Ödenecek Tutar</h5>
+                <h5>@ViewBag.totalNewPriceWithDiscount.ToString("N2") ₺</h5>
             </div>
             <button class="btn btn-block btn-primary font-weight-bold my-3 py-3">Ödeme Adımına Geç</button>
         </div>
