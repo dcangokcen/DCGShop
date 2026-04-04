@@ -16,6 +16,7 @@ using DCGShop.WebUI.Services.Concrete;
 using DCGShop.WebUI.Services.DiscountServices;
 using DCGShop.WebUI.Services.Interfaces;
 using DCGShop.WebUI.Services.OrderServices.AddressServices;
+using DCGShop.WebUI.Services.OrderServices.OrderingServices;
 using DCGShop.WebUI.Settings;
 using IdentityModel.AspNetCore.AccessTokenManagement;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -80,6 +81,11 @@ builder.Services.AddHttpClient<IDiscountService, DiscountService>(opt =>
 }).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
 
 builder.Services.AddHttpClient<IAddressService, AddressService>(opt =>
+{
+	opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Order.Path}");
+}).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
+
+builder.Services.AddHttpClient<IOrderingService, OrderingService>(opt =>
 {
 	opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Order.Path}");
 }).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();

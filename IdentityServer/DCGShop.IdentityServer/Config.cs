@@ -22,6 +22,7 @@ namespace DCGShop.IdentityServer
 			new ApiResource("ResourcePayment"){Scopes = {"PaymentFullPermission"}},
 			new ApiResource("ResourceImages"){Scopes = {"ImagesFullPermission"}},
 			new ApiResource("ResourceOcelot"){Scopes = {"OcelotFullPermission"}},
+			new ApiResource("ResourceMessage"){Scopes = {"MessageFullPermission"}},
 			new ApiResource(IdentityServerConstants.LocalApi.ScopeName)
 		};
 
@@ -44,6 +45,7 @@ namespace DCGShop.IdentityServer
 			new ApiScope("PaymentFullPermission","Full authority for payment operations"),
 			new ApiScope("ImagesFullPermission","Full authority for images operations"),
 			new ApiScope("OcelotFullPermission","Full authority for ocelot operations"),
+			new ApiScope("MessageFullPermission","Full authority for message operations"),
 			new ApiScope(IdentityServerConstants.LocalApi.ScopeName)
 		};
 
@@ -56,7 +58,7 @@ namespace DCGShop.IdentityServer
 				ClientName = "DCG Shop Visitor User",
 				ClientSecrets = {new Secret("dcgshopsecret".Sha256()) },
 				AllowedGrantTypes = GrantTypes.ClientCredentials,
-				AllowedScopes = { "CatalogReadPermission", "CatalogFullPermission", "OcelotFullPermission", "CommentFullPermission", "ImagesFullPermission", IdentityServerConstants.LocalApi.ScopeName },
+				AllowedScopes = { "CatalogReadPermission", "CatalogFullPermission", "MessageFullPermission", "OcelotFullPermission", "CommentFullPermission", "ImagesFullPermission", IdentityServerConstants.LocalApi.ScopeName },
 				AllowAccessTokensViaBrowser = true
 			},
 			//Admin
@@ -66,7 +68,7 @@ namespace DCGShop.IdentityServer
 				ClientName = "DCG Shop Admin User",
 				ClientSecrets = {new Secret("dcgshopsecret".Sha256()) },
 				AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
-				AllowedScopes = { "CatalogReadPermission", "CatalogReadPermission", "DiscountFullPermission", "OrderFullPermission", "OcelotFullPermission", "CargoFullPermission","BasketFullPermission", "CommentFullPermission", "PaymentFullPermission","ImagesFullPermission",
+				AllowedScopes = { "CatalogReadPermission", "CatalogReadPermission","MessageFullPermission", "DiscountFullPermission", "OrderFullPermission", "OcelotFullPermission", "CargoFullPermission","BasketFullPermission", "CommentFullPermission", "PaymentFullPermission","ImagesFullPermission",
 				IdentityServerConstants.LocalApi.ScopeName,
 				IdentityServerConstants.StandardScopes.Email,
 				IdentityServerConstants.StandardScopes.OpenId,
@@ -81,7 +83,7 @@ namespace DCGShop.IdentityServer
 				ClientName = "DCG Shop Manager User",
 				ClientSecrets = {new Secret("dcgshopsecret".Sha256()) },
 				AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
-				AllowedScopes = { "CatalogReadPermission", "CatalogFullPermission", "DiscountFullPermission", "OrderFullPermission", "BasketFullPermission", "OcelotFullPermission", "PaymentFullPermission", "CommentFullPermission", "ImagesFullPermission", 
+				AllowedScopes = { "CatalogReadPermission", "CatalogFullPermission","MessageFullPermission", "DiscountFullPermission", "OrderFullPermission", "BasketFullPermission", "OcelotFullPermission", "PaymentFullPermission", "CommentFullPermission", "ImagesFullPermission",
 				IdentityServerConstants.LocalApi.ScopeName,
 				IdentityServerConstants.StandardScopes.Email,
 				IdentityServerConstants.StandardScopes.OpenId,
