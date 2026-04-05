@@ -83,7 +83,7 @@ namespace DCGShop.IdentityServer
 				ClientName = "DCG Shop Manager User",
 				ClientSecrets = {new Secret("dcgshopsecret".Sha256()) },
 				AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
-				AllowedScopes = { "CatalogReadPermission", "CatalogFullPermission","MessageFullPermission", "DiscountFullPermission", "OrderFullPermission", "BasketFullPermission", "OcelotFullPermission", "PaymentFullPermission", "CommentFullPermission", "ImagesFullPermission",
+				AllowedScopes = { "CatalogReadPermission", "CatalogFullPermission", "MessageFullPermission", "DiscountFullPermission", "OrderFullPermission", "BasketFullPermission", "OcelotFullPermission", "PaymentFullPermission", "CommentFullPermission", "ImagesFullPermission",
 				IdentityServerConstants.LocalApi.ScopeName,
 				IdentityServerConstants.StandardScopes.Email,
 				IdentityServerConstants.StandardScopes.OpenId,

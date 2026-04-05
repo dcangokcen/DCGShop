@@ -15,6 +15,7 @@ using DCGShop.WebUI.Services.CommentServices;
 using DCGShop.WebUI.Services.Concrete;
 using DCGShop.WebUI.Services.DiscountServices;
 using DCGShop.WebUI.Services.Interfaces;
+using DCGShop.WebUI.Services.MessageServices;
 using DCGShop.WebUI.Services.OrderServices.AddressServices;
 using DCGShop.WebUI.Services.OrderServices.OrderingServices;
 using DCGShop.WebUI.Settings;
@@ -88,6 +89,11 @@ builder.Services.AddHttpClient<IAddressService, AddressService>(opt =>
 builder.Services.AddHttpClient<IOrderingService, OrderingService>(opt =>
 {
 	opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Order.Path}");
+}).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
+
+builder.Services.AddHttpClient<IMessageService, MessageService>(opt =>
+{
+	opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Message.Path}");
 }).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
 
 builder.Services.AddHttpClient<ICategoryService, CategoryService>(opt =>

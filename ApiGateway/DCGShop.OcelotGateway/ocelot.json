@@ -167,7 +167,7 @@
       "UpstreamScheme": "http",
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "OcelotAuthenticationScheme",
-        "AllowedScopes": [ "MessagesFullPermission" ]
+        "AllowedScopes": [ "MessageFullPermission" ]
       }
     }
   ],

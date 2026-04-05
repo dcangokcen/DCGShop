@@ -51,14 +51,14 @@ namespace DCGShop.Message.Controllers
 			return Ok(values);
 		}
 
-		[HttpGet("GetInboxMessages{id}")]
+		[HttpGet("GetInboxMessages/{id}")]
 		public async Task<IActionResult> GetInboxMessages(string id)
 		{
 			var messages = await _userMessageService.GetInboxMessageAsync(id);
 			return Ok(messages);
 		}
 
-		[HttpGet("GetSendboxMessages{id}")]
+		[HttpGet("GetSendboxMessages/{id}")]
 		public async Task<IActionResult> GetSendboxMessages(string id)
 		{
 			var messages = await _userMessageService.GetSendboxMessageAsync(id);
