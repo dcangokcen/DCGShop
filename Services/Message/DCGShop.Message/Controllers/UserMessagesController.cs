@@ -7,11 +7,11 @@ namespace DCGShop.Message.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
-	public class userMessagesController : ControllerBase
+	public class UserMessagesController : ControllerBase
 	{
 		private readonly IUserMessageService _userMessageService;
 
-		public userMessagesController(IUserMessageService userMessageService)
+		public UserMessagesController(IUserMessageService userMessageService)
 		{
 			_userMessageService = userMessageService;
 		}

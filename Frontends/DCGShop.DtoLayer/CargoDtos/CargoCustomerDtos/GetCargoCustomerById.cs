@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DCGShop.Cargo.Dto.Layer.Dtos.CargoCustomerDto
+namespace DCGShop.DtoLayer.CargoDtos.CargoCustomerDtos
 {
-	public class UpdateCargoCustomerDto
+	public class GetCargoCustomerById
 	{
 		public int CargoCustomerId { get; set; }
 		public string Name { get; set; }
@@ -17,6 +17,5 @@ namespace DCGShop.Cargo.Dto.Layer.Dtos.CargoCustomerDto
 		public string City { get; set; }
 		public string Address { get; set; }
 		public string UserCustomerId { get; set; }
-
 	}
 }

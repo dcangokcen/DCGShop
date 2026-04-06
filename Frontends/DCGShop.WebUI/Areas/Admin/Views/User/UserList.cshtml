@@ -1,7 +1,7 @@
-﻿@model List<ResultCategoryDto>
+﻿@model List<ResultUserDto>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "UserList";
     Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
     int count = 0;
 }
@@ -16,9 +16,10 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Kategori Adı</th>
-                                <th>Sil</th>
-                                <th>Güncelle</th>
+                                <th>Ad Soyad</th>
+                                <th>Kullanıcı Adı</th>
+                                <th>Email</th>
+                                <th>Adres</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -27,18 +28,19 @@
                                 count++;
                                 <tr>
                                     <th scope="row">@count</th>
-                                    <td>@item.CategoryName</td>
-                                    <td><a href="/Admin/Category/DeleteCategory/@item.CategoryID" class="btn btn-danger">Sil</a></td>
-                                    <td><a href="/Admin/Category/UpdateCategory/@item.CategoryID" class="btn btn-success">Güncelle</a></td>
+                                    <td>@item.name @item.surname</td>
+                                    <td>@item.userName</td>
+                                    <td>@item.email</td>
+                                    <td> <a href="/Admin/User/UserAddressInfo/@item.id" class="btn btn-warning">Adres Bilgileri</a></td>
                                 </tr>
                             }
-
                         </tbody>
                     </table>
-                    <a href="/Admin/Category/CreateCategory/" class="btn btn-primary">Yeni Kategori Girişi</a>
                 </div>
             </div>
         </div>
 
     </div>
 </section>
+
+

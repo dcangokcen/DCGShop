@@ -33,15 +33,6 @@ namespace DCGShop.WebUI.Controllers
 			createContactDto.SendDate = DateTime.Now;
 			await _contactService.CreateContactAsync(createContactDto);
 			return RedirectToAction("Index", "Default");
-			//var client = _httpClientFactory.CreateClient();
-			//var jsonData = JsonConvert.SerializeObject(createContactDto);
-			//StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-			//var responseMessage = await client.PostAsync("https://localhost:7070/api/Contacts", stringContent);
-			//if (responseMessage.IsSuccessStatusCode)
-			//{
-			//	return RedirectToAction("Index", "Default");
-			//}
-			//return View();
 		}
 	}
 }

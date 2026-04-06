@@ -1,5 +1,7 @@
 using DCGShop.WebUI.Handlers;
 using DCGShop.WebUI.Services.BasketServices;
+using DCGShop.WebUI.Services.CargoServices.CargoCompanyService;
+using DCGShop.WebUI.Services.CargoServices.CargoCustomerServices;
 using DCGShop.WebUI.Services.CatalogServices.AboutServices;
 using DCGShop.WebUI.Services.CatalogServices.BrandServices;
 using DCGShop.WebUI.Services.CatalogServices.CategoryServices;
@@ -94,6 +96,16 @@ builder.Services.AddHttpClient<IOrderingService, OrderingService>(opt =>
 builder.Services.AddHttpClient<IMessageService, MessageService>(opt =>
 {
 	opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Message.Path}");
+}).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
+
+builder.Services.AddHttpClient<ICargoCompanyService, CargoCompanyService>(opt =>
+{
+	opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Cargo.Path}");
+}).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
+
+builder.Services.AddHttpClient<ICargoCustomerService, CargoCustomerService>(opt =>
+{
+	opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Cargo.Path}");
 }).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
 
 builder.Services.AddHttpClient<ICategoryService, CategoryService>(opt =>
