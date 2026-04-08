@@ -27,5 +27,13 @@ namespace DCGShop.WebUI.Services.MessageServices
 			var values = JsonConvert.DeserializeObject<List<ResultSendboxMessageDto>>(jsonData);
 			return values;
 		}
+
+		public async Task<int> GetTotalMessageCountAsync()
+		{
+			var responseMessage = await _httpClient.GetAsync($"usermessages/GetTotalMessageCount");
+			var jsonData = await responseMessage.Content.ReadAsStringAsync();
+			var values = JsonConvert.DeserializeObject<int>(jsonData);
+			return values;
+		}
 	}
 }

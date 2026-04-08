@@ -29,6 +29,13 @@ namespace DCGShop.WebUI.Services.CommentServices
 			await _httpClient.DeleteAsync("comments?id=" + id);
 		}
 
+		public async Task<int> GetActiveCommentCount()
+		{
+			var responseMessage = await _httpClient.GetAsync("comments/GetActiveCommentCount");
+			var value = await responseMessage.Content.ReadFromJsonAsync<int>();
+			return value;
+		}
+
 		public async Task<List<ResultCommentDto>> GetAllCommentAsync()
 		{
 			var responseMessage = await _httpClient.GetAsync("comments");
@@ -41,6 +48,20 @@ namespace DCGShop.WebUI.Services.CommentServices
 		{
 			var responseMessage = await _httpClient.GetAsync("comments/" + id);
 			var value = await responseMessage.Content.ReadFromJsonAsync<UpdateCommentDto>();
+			return value;
+		}
+
+		public async Task<int> GetPassiveCommentCount()
+		{
+			var responseMessage = await _httpClient.GetAsync("comments/GetPassiveCommentCount");
+			var value = await responseMessage.Content.ReadFromJsonAsync<int>();
+			return value;
+		}
+
+		public async Task<int> GetTotalCommentCount()
+		{
+			var responseMessage = await _httpClient.GetAsync("comments/GetTotalCommentCount");
+			var value = await responseMessage.Content.ReadFromJsonAsync<int>();
 			return value;
 		}
 

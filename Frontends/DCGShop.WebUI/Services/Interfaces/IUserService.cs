@@ -7,6 +7,5 @@ namespace DCGShop.WebUI.Services.Interfaces
 	{
 		Task<UserDetailViewModel> GetUserInfo();
 		Task<List<ResultUserDto>> GetAllUserAsync();
-
 	}
 }

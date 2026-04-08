@@ -64,5 +64,11 @@ namespace DCGShop.Message.Controllers
 			var messages = await _userMessageService.GetSendboxMessageAsync(id);
 			return Ok(messages);
 		}
+		[HttpGet("GetTotalMessageCount")]
+		public async Task<IActionResult> GetTotalMessageCountAsync()
+		{
+			var messages = await _userMessageService.GetTotalMessageCountAsync();
+			return Ok(messages);
+		}
 	}
 }

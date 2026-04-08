@@ -20,5 +20,13 @@ namespace DCGShop.WebUI.Services.DiscountServices
 			var values = JsonConvert.DeserializeObject<GetDiscountCodeDetailByCode>(jsonData);
 			return values;
 		}
+
+		public async Task<int> GetDiscountCouponCount()
+		{
+			var responseMessage = await _httpClient.GetAsync($"discounts/GetDiscountCouponCount");
+			var jsonData = await responseMessage.Content.ReadAsStringAsync();
+			var values = JsonConvert.DeserializeObject<int>(jsonData);
+			return values;
+		}
 	}
 }

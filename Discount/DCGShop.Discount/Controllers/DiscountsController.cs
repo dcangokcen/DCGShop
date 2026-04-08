@@ -17,6 +17,7 @@ namespace DCGShop.Discount.Controllers
 		{
 			_discountService = discountService;
 		}
+
 		[HttpGet]
 		public async Task<IActionResult> DiscountCouponList()
 		{
@@ -53,6 +54,13 @@ namespace DCGShop.Discount.Controllers
 		{
 			await _discountService.UpdateDiscountCouponAsync(updateCouponDto);
 			return Ok("İndirim kuponu başarıyla güncellendi.");
+		}
+
+		[HttpGet("GetDiscountCouponCount")]
+		public async Task<IActionResult> GetDiscountCouponCount()
+		{
+			var values = await _discountService.GetDiscountCouponCount();
+			return Ok(values);
 		}
 	}
 }

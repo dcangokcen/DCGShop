@@ -20,6 +20,8 @@ using DCGShop.WebUI.Services.Interfaces;
 using DCGShop.WebUI.Services.MessageServices;
 using DCGShop.WebUI.Services.OrderServices.AddressServices;
 using DCGShop.WebUI.Services.OrderServices.OrderingServices;
+using DCGShop.WebUI.Services.StatisticServices.CategoryStatisticServices;
+using DCGShop.WebUI.Services.StatisticServices.UserStatisticServices;
 using DCGShop.WebUI.Settings;
 using IdentityModel.AspNetCore.AccessTokenManagement;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -73,6 +75,11 @@ builder.Services.AddHttpClient<IUserService, UserService>(opt =>
 	opt.BaseAddress = new Uri(values.IdentityServerUrl);
 }).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
 
+builder.Services.AddHttpClient<IUserStatisticService, UserStatisticService>(opt =>
+{
+	opt.BaseAddress = new Uri(values.IdentityServerUrl);
+}).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
+
 builder.Services.AddHttpClient<IBasketService, BasketService>(opt =>
 {
 	opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Basket.Path}");
@@ -106,6 +113,11 @@ builder.Services.AddHttpClient<ICargoCompanyService, CargoCompanyService>(opt =>
 builder.Services.AddHttpClient<ICargoCustomerService, CargoCustomerService>(opt =>
 {
 	opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Cargo.Path}");
+}).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
+
+builder.Services.AddHttpClient<ICategoryStatisticService, CategoryStatisticService>(opt =>
+{
+	opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Catalog.Path}");
 }).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
 
 builder.Services.AddHttpClient<ICategoryService, CategoryService>(opt =>

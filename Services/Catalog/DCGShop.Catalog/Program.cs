@@ -9,6 +9,7 @@ using DCGShop.Catalog.Services.ProductDetailServices;
 using DCGShop.Catalog.Services.ProductImageServices;
 using DCGShop.Catalog.Services.ProductServices;
 using DCGShop.Catalog.Services.SpecialOfferServices;
+using DCGShop.Catalog.Services.StatisticServices;
 using DCGShop.Catalog.Settings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
@@ -36,6 +37,7 @@ builder.Services.AddScoped<IOfferDiscountService, OfferDiscountService>();
 builder.Services.AddScoped<IBrandService, BrandService>();
 builder.Services.AddScoped<IAboutService, AboutService>();
 builder.Services.AddScoped<IContactService, ContactService>();
+builder.Services.AddScoped<IStatisticService, StatisticService>();
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 

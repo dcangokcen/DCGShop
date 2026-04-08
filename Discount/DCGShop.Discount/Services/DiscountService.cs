@@ -72,6 +72,16 @@ namespace DCGShop.Discount.Services
 			}
 		}
 
+		public async Task<int> GetDiscountCouponCount()
+		{
+			string query = "Select Count(*) From Coupons";
+			using (var connection = _context.CreateConnection())
+			{
+				int values = await connection.QueryFirstOrDefaultAsync<int>(query);
+				return values;
+			}
+		}
+
 		public async Task UpdateDiscountCouponAsync(UpdateDiscountCouponDto updateCouponDto)
 		{
 			string query = "Update Coupons Set Code=@code,Rate=@rate,IsActive=@isActive,ValidDate=@validDate Where CouponId=@couponId";

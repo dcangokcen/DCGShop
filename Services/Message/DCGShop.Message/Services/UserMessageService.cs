@@ -49,6 +49,12 @@ namespace DCGShop.Message.Services
 			return _mapper.Map<List<ResultInboxMessageDto>>(values);
 		}
 
+		public async Task<int> GetTotalMessageCountAsync()
+		{
+			int values = await _messageContext.UserMessages.CountAsync();
+			return values;
+		}
+
 		public async Task<List<ResultSendboxMessageDto>> GetSendboxMessageAsync(string id)
 		{
 			var values = await _messageContext.UserMessages.Where(x => x.SenderId == id).ToListAsync();
