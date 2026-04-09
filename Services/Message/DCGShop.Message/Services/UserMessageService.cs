@@ -67,5 +67,11 @@ namespace DCGShop.Message.Services
 			_messageContext.UserMessages.Update(values);
 			await _messageContext.SaveChangesAsync();
 		}
+
+		public async Task<int> GetTotalMessageCountByReceiverIdAsync(string id)
+		{
+			int values = await _messageContext.UserMessages.Where(x => x.ReceiverId == id).CountAsync();
+			return values;
+		}
 	}
 }
