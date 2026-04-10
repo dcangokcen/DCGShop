@@ -1,0 +1,10 @@
+﻿@model List<ExchangeViewModel>
+@{
+    Layout = null;
+}
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+<div class="container">
+    <br /> <br />
+    <h3 class="alert alert-success">Dolar Alış : @Model[0].Data.ExchangeRate - Dolar Satış : @Model[0].Data.PreviousClose </h3>
+    <h3 class="alert alert-primary">Euro Alış : @Model[1].Data.ExchangeRate - Euro Satış : @Model[1].Data.PreviousClose </h3>
+</div>
