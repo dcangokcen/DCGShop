@@ -361,3 +361,23 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# -----------------------------
+# Sensitive credentials / keys
+# -----------------------------
+
+# Specific Google service account key
+dcgshopimagesstorage-a9d445f1bc6f.json
+**/dcgshopimagesstorage-a9d445f1bc6f.json
+
+# Specific path in this project
+Services/Images/DCGShop.Images.WebUI/wwwroot/dcgshopimagesstorage-a9d445f1bc6f.json
+
+# Generic credential-like json files
+**/*service-account*.json
+**/*credentials*.json
+**/*credential*.json
+**/secrets/*.json
+**/secret/*.json
+secrets/
+secret/
