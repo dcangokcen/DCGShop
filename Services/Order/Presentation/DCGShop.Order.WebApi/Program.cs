@@ -6,6 +6,7 @@ using DCGShop.Order.Application.Services;
 using DCGShop.Order.Persistence.Context;
 using DCGShop.Order.Persistence.Repostories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
@@ -15,7 +16,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 	opt.RequireHttpsMetadata = false;
 });
 
-builder.Services.AddDbContext<OrderContext>();
+builder.Services.AddDbContext<OrderContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped(typeof(IOrderingRepository), typeof(OrderingRepository));
 builder.Services.AddApplicationService(builder.Configuration);

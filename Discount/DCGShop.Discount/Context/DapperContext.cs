@@ -17,7 +17,7 @@ namespace DCGShop.Discount.Context
 		}
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
-			optionsBuilder.UseSqlServer("Server=DESKTOP-GKAP8AU; initial Catalog=DCGShopDiscountDb;integrated Security=true");
+			optionsBuilder.UseSqlServer(_connectionString);
 		}
 		public DbSet<Coupon> Coupons { get; set; }
 		public IDbConnection CreateConnection() => new SqlConnection(_connectionString);

@@ -5,11 +5,9 @@ namespace DCGShop.Comment.Context
 {
 	public class CommentContext : DbContext
 	{
-		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+		public CommentContext(DbContextOptions<CommentContext> options) : base(options)
 		{
-			optionsBuilder.UseSqlServer("Server=localhost,1442;initial Catalog=DCGShopCommentDB;User=sa;Password=123456aA*");
 		}
 		public DbSet<UserComment> UserComments { get; set; }
-	
 	}
 }

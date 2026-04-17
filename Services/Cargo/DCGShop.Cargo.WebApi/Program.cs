@@ -4,6 +4,7 @@ using DCGShop.Cargo.DataAccessLayer.Abstract;
 using DCGShop.Cargo.DataAccessLayer.Concrete;
 using DCGShop.Cargo.DataAccessLayer.EntityFramework;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +16,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 });
 
 // Add services to the container.
-builder.Services.AddDbContext<CargoContext>();
+builder.Services.AddDbContext<CargoContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddScoped<ICargoCompanyDal, EfCargoCompanyDal>();
 builder.Services.AddScoped<ICargoCompanyService, CargoCompanyManager>();
 builder.Services.AddScoped<ICargoCustomerDal, EfCargoCustomerDal>();

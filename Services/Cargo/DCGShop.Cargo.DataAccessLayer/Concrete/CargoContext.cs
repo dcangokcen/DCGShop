@@ -10,9 +10,8 @@ namespace DCGShop.Cargo.DataAccessLayer.Concrete
 {
 	public class CargoContext : DbContext
 	{
-		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+		public CargoContext(DbContextOptions<CargoContext> options) : base(options)
 		{
-			optionsBuilder.UseSqlServer("Server=localhost,1441;initial Catalog=DCGShopCargoDB;User=sa;Password=123456aA*");
 		}
 		public DbSet<CargoCompany> CargoCompanies { get; set; }
 		public DbSet<CargoDetail> CargoDetails{ get; set; }

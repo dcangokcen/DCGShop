@@ -1,0 +1,188 @@
+services:
+  dcgshop-mssql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: dcgshop-mssql
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=123456aA*
+    ports:
+      - "1433:1433"
+
+  dcgshop-mongodb:
+    image: mongo:latest
+    container_name: dcgshop-mongodb
+    ports:
+      - "27017:27017"
+
+  dcgshop-redis:
+    image: redis:latest
+    container_name: dcgshop-redis
+    ports:
+      - "6379:6379"
+
+  dcgshop-postgresql:
+    image: postgres:latest
+    container_name: dcgshop-postgresql
+    environment:
+      - POSTGRES_PASSWORD=91024038dD*
+    ports:
+      - "5432:5432"
+
+  identityserver:
+    image: dcgshop-identityserver
+    build:
+      context: .
+      dockerfile: IdentityServer/DCGShop.IdentityServer/Dockerfile
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=dcgshop-mssql;Database=DCGShopIdentityDb;User=sa;Password=123456aA*;TrustServerCertificate=True
+    ports:
+      - "5001:80"
+    depends_on:
+      - dcgshop-mssql
+
+  catalog:
+    image: dcgshop-catalog
+    build:
+      context: .
+      dockerfile: Services/Catalog/DCGShop.Catalog/Dockerfile
+    environment:
+      - DatabaseSettings__ConnectionString=mongodb://dcgshop-mongodb:27017
+      - IdentityServerURL=http://identityserver
+    ports:
+      - "7070:80"
+    depends_on:
+      - dcgshop-mongodb
+      - identityserver
+
+  basket:
+    image: dcgshop-basket
+    build:
+      context: .
+      dockerfile: Services/Basket/DCGShop.Basket/Dockerfile
+    environment:
+      - RedisSettings__Host=dcgshop-redis
+      - IdentityServerURL=http://identityserver
+    ports:
+      - "7074:80"
+    depends_on:
+      - dcgshop-redis
+      - identityserver
+
+  discount:
+    image: dcgshop-discount
+    build:
+      context: .
+      dockerfile: Discount/DCGShop.Discount/Dockerfile
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=dcgshop-mssql;Database=DCGShopDiscountDb;User=sa;Password=123456aA*;TrustServerCertificate=True
+      - IdentityServerURL=http://identityserver
+    ports:
+      - "7071:80"
+    depends_on:
+      - dcgshop-mssql
+      - identityserver
+
+  order:
+    image: dcgshop-order
+    build:
+      context: .
+      dockerfile: Services/Order/Presentation/DCGShop.Order.WebApi/Dockerfile
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=dcgshop-mssql;Database=DCGShopOrderDB;User=sa;Password=123456aA*;TrustServerCertificate=True
+      - IdentityServerURL=http://identityserver
+    ports:
+      - "7072:80"
+    depends_on:
+      - dcgshop-mssql
+      - identityserver
+
+  cargo:
+    image: dcgshop-cargo
+    build:
+      context: .
+      dockerfile: Services/Cargo/DCGShop.Cargo.WebApi/Dockerfile
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=dcgshop-mssql;Database=DCGShopCargoDB;User=sa;Password=123456aA*;TrustServerCertificate=True
+      - IdentityServerURL=http://identityserver
+    ports:
+      - "7073:80"
+    depends_on:
+      - dcgshop-mssql
+      - identityserver
+
+  comment:
+    image: dcgshop-comment
+    build:
+      context: .
+      dockerfile: Services/Comment/DCGShop.Comment/Dockerfile
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=dcgshop-mssql;Database=DCGShopCommentDB;User=sa;Password=123456aA*;TrustServerCertificate=True
+      - IdentityServerURL=http://identityserver
+    ports:
+      - "7075:80"
+    depends_on:
+      - dcgshop-mssql
+      - identityserver
+
+  message:
+    image: dcgshop-message
+    build:
+      context: .
+      dockerfile: Services/Message/DCGShop.Message/Dockerfile
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=dcgshop-postgresql;Port=5432;Database=DCGShopMessageDb;User Id=postgres;Password=91024038dD*;
+      - IdentityServerURL=http://identityserver
+    ports:
+      - "7078:80"
+    depends_on:
+      - dcgshop-postgresql
+      - identityserver
+
+  payment:
+    image: dcgshop-payment
+    build:
+      context: .
+      dockerfile: Services/Payment/DCGShop.Payment/Dockerfile
+    ports:
+      - "7076:80"
+
+  images:
+    image: dcgshop-images
+    build:
+      context: .
+      dockerfile: Services/Images/DCGShop.Images/Dockerfile
+    ports:
+      - "7077:80"
+
+  signalr:
+    image: dcgshop-signalr
+    build:
+      context: .
+      dockerfile: Services/SignlRRealTimeApi/DCGShop.SignalRRealTimeApi/Dockerfile
+    ports:
+      - "7079:80"
+
+  ocelot-gateway:
+    image: dcgshop-ocelot-gateway
+    build:
+      context: .
+      dockerfile: ApiGateway/DCGShop.OcelotGateway/Dockerfile
+    environment:
+      - IdentityServerURL=http://identityserver
+    ports:
+      - "5000:80"
+    depends_on:
+      - identityserver
+
+  web-ui:
+    image: dcgshop-web-ui
+    build:
+      context: .
+      dockerfile: Frontends/DCGShop.WebUI/Dockerfile
+    environment:
+      - IdentityServerURL=http://identityserver
+      - OcelotGatewayURL=http://ocelot-gateway
+    ports:
+      - "8080:80"
+    depends_on:
+      - ocelot-gateway
